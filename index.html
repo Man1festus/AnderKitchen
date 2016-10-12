@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="shortcut icon" href="img/Ice_Block_IG.png" type="image/png">
+	<title>IceBox</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Управление продуктами
+			</div>
+			<div class="panel-content">
+				<div class="form-group">
+					<label for="name">Название продукта:</label>
+					<input type="text" class="form-control" id="name" placeholder="Имя продукта...">
+					<button id="addProducts" class="btn btn-default">Добавить в холодильник!</button>
+				</div>
+				<div class="row" style="padding-left: 20px;">
+				<div class="alert alert-info col-sm-6">Перемещайте продукты с холодильника на стол и готовьте! <br> Смотрите список рецептов.
+					<div class="alert alert-danger"><strong>Важно!</strong> При нажатии "Приготовить" продукты исчезают со стола!</div>
+				</div>
+				<div class="col-sm-3 small">
+					<ul id="pancakes" class="list-group list-recipes">
+						<a id="recShowBut" href="#" class="list-group-item list-group-item-info">Блины</a>
+						<li class="list-group-item ingredient">Молоко</li>
+						<li class="list-group-item ingredient">Яйца</li>
+						<li class="list-group-item ingredient">Мука</li>
+					</ul>
+					<ul id="cheescakes" class="list-group list-recipes">
+						<a id="recShowBut" href="#" class="list-group-item list-group-item-info">Сырники</a>
+						<li id="rec2" class="list-group-item ingredient">Творог</li>
+						<li id="rec2" class="list-group-item ingredient">Яйца</li>
+						<li id="rec2" class="list-group-item ingredient">Мука</li>
+						<li id="rec2" class="list-group-item ingredient">Сахар</li>
+					</ul>
+					<ul id="omelet" class="list-group list-recipes">
+						<a id="recShowBut" href="#" class="list-group-item list-group-item-info">Омлет</a>
+						<li id="rec3" class="list-group-item ingredient">Яйца</li>
+						<li id="rec3" class="list-group-item ingredient">Молоко</li>
+						<li id="rec3" class="list-group-item ingredient">Сыр</li>
+					</ul>
+				</div>		
+				</div>
+			</div>
+		</div>
+			<div id="fridge" class="products" ondragover="allowDrop(event)">
+				<p>Холодильник <span class="badge">0</span> </p>
+			</div>
+			<div class="kitchen" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<p>Стол</p>
+				<div id="wrapprod"></div>
+				<button id="cookingProducts" class="btn btn-success">Приготовить</button>
+			</div>
+			<div id="outProducts" class="products">
+				<p>Результаты <span class="badge">0</span> </p>
+			</div>		
+	</div>
+	<script src="js/data.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
