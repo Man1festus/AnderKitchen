@@ -62,7 +62,3 @@ body {
 ul.list-recipes {
 	margin-bottom: 0;
 }
-li>a#addFridgeProduct,li>a#addFridgeProduct:link,li>a#addFridgeProduct:visited{
-	float: right;
-	text-decoration: none;
-}
