@@ -21,60 +21,57 @@
     		event.target.appendChild(dragElement);
     		document.querySelector('#fridge>p>span').textContent = ''+fridgeProducts.length;
     	}
-    		/*if(fridgeProducts.indexOf(dragProduct) == (-1)){
-  				productList.splice(dragProduct,1);
-       			event.target.appendChild(document.getElementById(data));
-    			alert('Fridge: ' + fridgeProducts + 'Kitchen: '+productList);	
-    		}
-    		else if(productList.indexOf(dragProduct) == (-1) && fridgeProducts.length > 0){
-    			fridgeProducts.splice(dragProduct,1);
-    			productList.push(dragProduct);
-    			alert('FRIDGE: ' + fridgeProducts + 'Kitchen: ' + productList);
-    			event.target.appendChild(document.getElementById(data));
-    		}
-    		else if(fridgeProducts.indexOf(dragProduct) != (-1)){
-    			alert('FRIDGE: ' + fridgeProducts + 'Kitchen: ' + productList);
-    		}*/
-  
 	}
 
 window.onload = function() {
 	var fridge = document.getElementById('fridge');
-	var products = Icebox.getProducts();
 	var butShow = document.querySelectorAll('#recShowBut');
-	document.getElementById('addProducts').addEventListener('click', addProd); 
+	var addProdFridge = document.querySelectorAll('#addFridgeProduct');
+ 	var nameProd = document.getElementById('name');
+	document.getElementById('addProducts').addEventListener('click', nameProductReq); 
 	document.getElementById('cookingProducts').addEventListener('click', pushResult);
-	for(var i = 0; i<butShow.length; i++){
-			butShow[i].addEventListener('click', idReturner);
+	var products = Icebox.getProducts();
+	for(var i = 0; i < butShow.length; i++){
+		butShow[i].addEventListener('click', idReturner);
+	}
+	for(var i = 0; i < addProdFridge.length; i++){
+		addProdFridge[i].addEventListener('click', valReturner);
 	}
 
-	function idReturner () {
-			clickRecipes(this.parentNode.id);
+	function idReturner() {
+		clickRecipes(this.parentNode.id);
  	}
 	
-	function addProd() {
-			var nameProd = document.getElementById('name');
-			var inputProdName = nameProd.value.toLowerCase();
-			if(inputProdName.length == 0){
+ 	function valReturner() {
+ 		addProd(this.parentNode.textContent.toLowerCase());
+ 	}
+
+ 	function nameProductReq () {
+		var inputProdName = nameProd.value.toLowerCase();
+		addProd(inputProdName);
+	}
+
+	function addProd(prodName) {
+			if(prodName.length == 0){
 				nameProd.setAttribute('placeholder','Введите название продукта...');
 				nameProd.classList.add('alert-danger');
 			}
-			else if(fridgeProducts.indexOf(inputProdName) != (-1)){
+			else if(fridgeProducts.indexOf(prodName) != (-1)){
 				nameProd.value = '';
 				nameProd.setAttribute('placeholder','Данный продукт уже есть в холодильнике...');
 				nameProd.classList.add('alert-danger');
 			}
 			else{
-				if(products.indexOf(inputProdName) != (-1)){
-					var img = Icebox.outImgSrc(inputProdName);
+				if(products.indexOf(prodName) != (-1)){
+					var img = Icebox.outImgSrc(prodName);
 				}
-				fridgeProducts.push(inputProdName);
+				fridgeProducts.push(prodName);
 				var dragElem = document.createElement('div');
 				dragElem.className = 'dragElements';
 				dragElem.setAttribute('draggable', true);
 				dragElem.setAttribute('ondragstart','drag(event)');
 				dragElem.id = 'pr' + fridgeProducts.length;
-				dragElem.textContent = inputProdName.charAt(0).toUpperCase() + inputProdName.substr(1);
+				dragElem.textContent = prodName.charAt(0).toUpperCase() + prodName.substr(1);
 				fridge.appendChild(dragElem);
 				document.getElementById(dragElem.id).style.backgroundImage = img;
 				nameProd.value = '';
@@ -83,6 +80,8 @@ window.onload = function() {
 				document.querySelector('#fridge>p>span').textContent = ''+fridgeProducts.length;
 			}
 	}
+
+
 	function pushResult(){
 			var cook = Icebox.outRecipes(productList);
 			if(cook == '' || productList.length < 3){
