@@ -66,15 +66,3 @@ li>a#addFridgeProduct,li>a#addFridgeProduct:link,li>a#addFridgeProduct:visited{
 	float: right;
 	text-decoration: none;
 }
-.blinking{
-    animation:blinking 1s infinite;
-    animation-direction: alternate;
-}
-@keyframes blinking{
-    from{
-    	opacity: 0;
-    }
-    to{
-    	opacity: 1;
-    }
-}

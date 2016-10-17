@@ -15,12 +15,12 @@
 				Управление продуктами
 			</div>
 			<div class="panel-content">
-				<div class="row" style="padding-left: 20px;">
-				<div class="form-group col-sm-4">
+				<div class="form-group">
 					<label for="name">Название продукта:</label>
 					<input type="text" class="form-control" id="name" placeholder="Имя продукта...">
-					<button id="addProducts" class="btn btn-primary btn-sm">Добавить в холодильник!</button>
+					<button id="addProducts" class="btn btn-default">Добавить в холодильник!</button>
 				</div>
+				<div class="row" style="padding-left: 20px;">
 				<div class="alert alert-info col-sm-4 small">Перемещайте продукты с холодильника на стол и готовьте! <br> Смотрите список рецептов.
 					<div class="alert alert-danger"><strong>Важно!</strong> При нажатии "Приготовить" продукты исчезают со стола!</div>
 				</div>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-			<div id="fridge" class="products" ondrop="drop(event)" ondragover="allowDrop(event)">
+			<div id="fridge" class="products" ondragover="allowDrop(event)">
 				<p>Холодильник <span class="badge">0</span> </p>
 			</div>
 			<div class="kitchen" ondrop="drop(event)" ondragover="allowDrop(event)">
