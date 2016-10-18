@@ -44,7 +44,7 @@ var recipes = [{
 },
 {
 	"name":"сырники",
-	"rec":['яйца','мука','молоко','сахар','творог']
+	"rec":['яйца','мука','сахар','творог']
 },
 {
 	"name":"омлет",
@@ -67,6 +67,7 @@ function getProducts(){
 
 function altOutRec(arrProd){
 	var result = '';
+	console.log('Продуктов поступило шт.: ' + arrProd.length)
 
 	var obj = {};
 	for (var i = 0; i < arrProd.length; i++) {
@@ -78,10 +79,13 @@ function altOutRec(arrProd){
 		var strRec = recipes[key].rec;
 		for (var i = 0; i < strRec.length; i++) {
 			if(obj[strRec[i]]){
+				console.log('Количество необходимых продуктов: ' + strRec.length);
 				count++;
 			}
-		if(count == arrProd.length){
+		if(count == strRec.length){
 	    	result += recipes[key].name;
+	    	console.log('Выходной результата:' + result);
+	    	break;
 		}
 		}
 		count = 0;
@@ -89,7 +93,7 @@ function altOutRec(arrProd){
 	return result;
 }
 
-function possibleRecReturner(productList){
+/*function possibleRecReturner(productList){
 	var regularRec = [];
 		for(var key in recipes){
 			for (var i = 0; i < productList.length; i++) {
@@ -109,7 +113,7 @@ function possibleRecReturner(productList){
 	  regularRec = [];
 	return(Object.keys(obj).toString().split(','));
 
-}
+}*/
 function outImgSrc(prodName){
 	var images = '';
 	for(var i = 0; i < products.length; i++){	
@@ -155,7 +159,7 @@ function outImgSrc(prodName){
 		getProducts : getProducts,
 		outImgSrc : outImgSrc,
 		/*outRecipes: outRecipes,*/
-		possibleRecReturner: possibleRecReturner,
+		/*possibleRecReturner: possibleRecReturner,*/
 		altOutRec: altOutRec
 	};
 })();
