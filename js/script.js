@@ -21,6 +21,12 @@
     		event.target.appendChild(dragElement);
     		document.querySelector('#fridge>p>span').textContent = ''+fridgeProducts.length;
     	}
+    	else if(fridgeProducts.indexOf(dragElement.textContent.toLowerCase()) === (-1) && event.target.id === 'fridge'){
+    		productList.splice(dragElement.textContent.toLowerCase(),1);
+    		fridgeProducts.push(dragElement.textContent.toLowerCase());
+    		event.target.appendChild(dragElement);
+    		document.querySelector('#fridge>p>span').textContent = ''+fridgeProducts.length;
+    	}
 	}
 
 window.onload = function() {
@@ -52,7 +58,7 @@ window.onload = function() {
 	}
 
 	function addProd(prodName) {
-			if(prodName.length == 0){
+			if(prodName.length == 0 || prodName == ' '){
 				nameProd.setAttribute('placeholder','Введите название продукта...');
 				nameProd.classList.add('alert-danger');
 			}
@@ -83,7 +89,7 @@ window.onload = function() {
 
 
 	function pushResult(){
-			var cook = Icebox.outRecipes(productList);
+			var cook = Icebox.altOutRec(productList);
 			if(cook == '' || productList.length < 3){
 				productList = [];
 				alert('На столе нет необходимых продуктов, либо из них ничего не приготовить.');
@@ -111,6 +117,17 @@ window.onload = function() {
 				productList = [];
 				}
 			}
+	/*function addBlinkedRecipes() {      //add class .blinking
+		var rec = productList + ',' + fridgeProducts;
+		var posRec = Icebox.possibleRecReturner(rec.split(','));
+		alert(posRec);
+    	var kitchenRec = Icebox.possibleRecReturner(productList);
+    	var fridgeRec = '';
+    	for (var i = 0; i < fridgeProducts.length; i++) {
+    		fridgeRec += Icebox.possibleRecReturner(fridgeProducts[i].split(','));
+    	}
+    	alert('FRIDGE: ' + fridgeRec + 'FRIDGE PROD: ' + fridgeProducts + 'KITCHEN: ' + kitchenRec);
+	}*/
 
 	function clickRecipes(idParentList){
 				var menuItem = document.querySelectorAll('#' + idParentList + '>.ingredient');
